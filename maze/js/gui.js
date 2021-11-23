@@ -235,6 +235,11 @@ function set_grid(grid) {
   table.rows[N - 1].cells[M - 1].setAttribute('data-ending', true);
 
   const app = document.getElementById('app');
+
+  // remove a table if it already exists
+  const builtTable = app.querySelector('table');
+  if(builtTable) builtTable.remove();
+
   app.appendChild(table);
 }
 
@@ -319,7 +324,7 @@ function bfs(startX, startY) {
   const q = new Queue();
   const directions = [...DIRS];
   const startingCell = get_starting_cell();
-  const totalCells = get_total_cell();
+  const halfCells = get_total_cell() / 2;
 
   startingCell.dataset.distance = 0;
   startingCell.dataset.visited = true;
@@ -328,7 +333,7 @@ function bfs(startX, startY) {
   while(!q.empty()) {
     const [x, y] = q.front();
     const curCell = get_cell(x, y);
-    const transparency = Math.min(1, 0.15 + Number(curCell.dataset.distance) / totalCells * 1.25);
+    const transparency = Math.min(1, 0.28 + Number(curCell.dataset.distance) / halfCells * 1.25);
 
     tracking.push([x, y, `rgba(255, 165, 0, ${transparency})`]);
     q.pop();
