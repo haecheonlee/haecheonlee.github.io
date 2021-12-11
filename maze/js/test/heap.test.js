@@ -1,3 +1,4 @@
+const AStarNode = require('../a_star_node');
 const Heap = require('../heap');
 
 
@@ -37,11 +38,43 @@ describe("Heap Testing...", () => {
       arr.push(randNum);
     }
 
+    // sort the array in ascending order
     arr.sort((a, b) => a - b);
 
     for(let i = 0; i < LEN; i++) {
       const least = heap.pop();
       expect(least).toEqual(arr[i]);
     }
+  });
+
+  it("AStarNode in Heap Testing", () => {
+    const heap = new Heap();
+
+    const arr = [];
+    const LEN = 10;
+
+    for(let i = 0; i < LEN; i++) {
+      for(let j = 0; j < LEN; j++) {
+        // starting to current node:  taxicab distdance
+        // current node to ending:    euclidean distasnce
+
+        const G = i + j;
+        const H = Math.floor(Math.sqrt((LEN - 1 - i)**2 + (LEN - 1 - j)**2));
+
+        const node = new AStarNode(i, j, G, H, null);
+        heap.push(node);
+        arr.push(G + H);
+      }
+    }
+
+    // sort the array in ascending order
+    arr.sort((a, b) => a - b);
+
+    let pos = 0;
+    while(!heap.empty()) {
+      const minNode = heap.pop();
+      expect(minNode.F).toBe(arr[pos++]);
+    }
+
   });
 });
