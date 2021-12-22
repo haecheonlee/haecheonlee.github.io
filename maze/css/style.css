@@ -21,6 +21,9 @@ html, body {
   font-family: sans-serif;
 }
 
+.option-container {
+  margin-bottom: 0.75em;
+}
 
 table, tr, td {
   position: relative;
@@ -75,4 +78,28 @@ table, tr, td {
 
 #game_mode_on_indicator {
   visibility: hidden;
+}
+
+#table_container {
+  margin-bottom: 2.5em;
+}
+
+#log {
+  height: 12.5em;
+  resize: none;
+  overflow-y: auto;
+
+  border: 1px solid grey;
+}
+
+#log:hover  {
+  cursor:not-allowed;
+}
+
+.log-cell {
+  font-weight: bold;
+}
+
+.fixed-width-1 {
+  width: 5.81em;
 }
