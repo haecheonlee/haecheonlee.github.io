@@ -1,5 +1,7 @@
 :root {
     --snow-animation-time-in-second: 3s;
+    --container-height: 500px;
+    --cloud-height: 75px;
 }
 * {
     box-sizing: border-box;
@@ -24,14 +26,14 @@ html, body {
 
 .container { 
     width: 500px;
-    height: 500px;
+    height: var(--container-height);
     border-bottom: 2px solid grey;
     position: relative;
 }
 
 .cloud {
     width: 300px;
-    height: 75px;
+    height: var(--cloud-height);
     display: inline-block;
     background-color: white;
     border-radius: 100px;
@@ -86,10 +88,10 @@ html, body {
 
 @keyframes movingSnow {
     0% {
-        top: 0;
+        transform: translateY(0);
     }
     100% {
-        top: 98%;
+        transform: translateY(calc(var(--container-height) - var(--cloud-height)));
         opacity: 0;
     }
 }
