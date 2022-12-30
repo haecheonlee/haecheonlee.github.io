@@ -11,7 +11,7 @@ function init() {
     setInterval(function() {
         const snowElement = addSnow(container, cloud);
         removeElementAfterAnimation(snowElement, parsedSnowAnimationTimeInMs);
-    }, 100);
+    }, 50);
 }   
 
 function addSnow(container, cloud) {
