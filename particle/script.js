@@ -1,5 +1,3 @@
-import Particle from "./particle";
-
 (function() {
     const canvas = document.getElementById("canvas");
     const ctx = canvas.getContext("2d");
@@ -47,7 +45,7 @@ import Particle from "./particle";
 
         handleParticles();
         requestAnimationFrame(animate);
-        
+
         hue++;
     }
 }());

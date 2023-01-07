@@ -1,4 +1,4 @@
-export class Particle {
+class Particle {
     constructor(mousePosX, mousePosY) {
         this.x = mousePosX;
         this.y = mousePosY;
