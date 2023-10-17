@@ -1,6 +1,17 @@
 export class Builder {
-    static renderCurrentWeatherInCity(temperatureInC, currentWeatherText, iconCdnSource, windInMph, precipitationInMm) {
-        Builder.setWeatherInfo(iconCdnSource, temperatureInC, windInMph, precipitationInMm);
+    static renderCurrentWeatherInCity(
+        temperatureInC,
+        currentWeatherText,
+        iconCdnSource,
+        windInMph,
+        precipitationInMm
+    ) {
+        Builder.setWeatherInfo(
+            iconCdnSource,
+            temperatureInC,
+            windInMph,
+            precipitationInMm
+        );
         Builder.setWeatherText(currentWeatherText);
         Builder.toggleElementOpacityById("weatherInfoContainer", "1");
         Builder.toggleElementOpacityById("weatherTextContainer", "1");
@@ -18,7 +29,9 @@ export class Builder {
         const weatherInfoContainerId = "weatherInfoContainer";
         const weatherInfo = document.getElementById(weatherInfoContainerId);
         if (!weatherInfo) {
-            console.info(`${Builder.setWeatherTextForInvalidCity.name}: ${weatherInfoContainerId}`);
+            console.info(
+                `${Builder.setWeatherTextForInvalidCity.name}: ${weatherInfoContainerId}`
+            );
             return;
         }
         const span = document.createElement("span");
@@ -34,7 +47,9 @@ export class Builder {
         const weatherInfoContainerId = "weatherInfoContainer";
         const weatherInfo = document.getElementById(weatherInfoContainerId);
         if (!weatherInfo) {
-            console.info(`${Builder.hideWeatherInfo.name}: ${weatherInfoContainerId}`);
+            console.info(
+                `${Builder.hideWeatherInfo.name}: ${weatherInfoContainerId}`
+            );
             return;
         }
         Builder.toggleElementOpacityById(weatherInfoContainerId, "0");
@@ -43,18 +58,27 @@ export class Builder {
         const weatherInfoContainerId = "weatherInfoContainer";
         const weatherInfo = document.getElementById(weatherInfoContainerId);
         if (!weatherInfo) {
-            console.info(`${Builder.hideWeatherInfo.name}: ${weatherInfoContainerId}`);
+            console.info(
+                `${Builder.hideWeatherInfo.name}: ${weatherInfoContainerId}`
+            );
             return;
         }
         while (weatherInfo.lastElementChild) {
             weatherInfo.removeChild(weatherInfo.lastElementChild);
         }
     }
-    static setWeatherInfo(iconCdnSource, temperatureInC, windInMph, precipitationInMm) {
+    static setWeatherInfo(
+        iconCdnSource,
+        temperatureInC,
+        windInMph,
+        precipitationInMm
+    ) {
         const weatherInfoContainerId = "weatherInfoContainer";
         const container = document.getElementById(weatherInfoContainerId);
         if (!container) {
-            console.info(`${Builder.setWeatherInfo.name}: ${weatherInfoContainerId}`);
+            console.info(
+                `${Builder.setWeatherInfo.name}: ${weatherInfoContainerId}`
+            );
             return;
         }
         while (container.lastElementChild) {
@@ -68,15 +92,34 @@ export class Builder {
             div.append(...elements);
             return div;
         };
-        const weatherIconImg = wrapElementsByContainer([], [Builder.buildImg(iconCdnSource)]);
-        const temperatureText = wrapElementsByContainer(["weather-temperature-text-container"], [
-            Builder.buildTemperatureText(temperatureInC),
-            Builder.buildTemperatureTextUnit("c"),
-        ]);
-        const weatherInfo = wrapElementsByContainer(["weather-extra-info-container"], [
-            Builder.buildWeatherExtraInfo(["weather-wind-container"], "/images/wind.png", windInMph, "mph"),
-            Builder.buildWeatherExtraInfo(["weather-precipitation-container"], "/images/umbrella.png", precipitationInMm, "mm"),
-        ]);
+        const weatherIconImg = wrapElementsByContainer(
+            [],
+            [Builder.buildImg(iconCdnSource)]
+        );
+        const temperatureText = wrapElementsByContainer(
+            ["weather-temperature-text-container"],
+            [
+                Builder.buildTemperatureText(temperatureInC),
+                Builder.buildTemperatureTextUnit("c"),
+            ]
+        );
+        const weatherInfo = wrapElementsByContainer(
+            ["weather-extra-info-container"],
+            [
+                Builder.buildWeatherExtraInfo(
+                    ["weather-wind-container"],
+                    "/images/wind.png",
+                    windInMph,
+                    "mph"
+                ),
+                Builder.buildWeatherExtraInfo(
+                    ["weather-precipitation-container"],
+                    "./images/umbrella.png",
+                    precipitationInMm,
+                    "mm"
+                ),
+            ]
+        );
         container.append(weatherIconImg, temperatureText, weatherInfo);
     }
     static buildImg(iconCdnSource) {
@@ -94,8 +137,7 @@ export class Builder {
         const sup = document.createElement("sup");
         if (unit === "c") {
             sup.textContent = String.fromCharCode(8451);
-        }
-        else if (unit === "f") {
+        } else if (unit === "f") {
             sup.textContent = String.fromCharCode(8457);
         }
         sup.classList.add("weather-temperature-text-unit");

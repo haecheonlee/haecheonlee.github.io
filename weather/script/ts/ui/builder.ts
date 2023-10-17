@@ -132,13 +132,13 @@ export class Builder {
             [
                 Builder.buildWeatherExtraInfo(
                     ["weather-wind-container"],
-                    "/images/wind.png",
+                    "./images/wind.png",
                     windInMph,
                     "mph"
                 ),
                 Builder.buildWeatherExtraInfo(
                     ["weather-precipitation-container"],
-                    "/images/umbrella.png",
+                    "./images/umbrella.png",
                     precipitationInMm,
                     "mm"
                 ),
