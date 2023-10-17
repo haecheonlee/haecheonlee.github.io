@@ -143,6 +143,7 @@ input:focus {
 
 .weather-container .weather-info-container .invalid-city-weather {
     color: var(--gray-400);
+    text-align: center;
 }
 
 .weather-container .weather-info-container .weather-temperature-text-container {
